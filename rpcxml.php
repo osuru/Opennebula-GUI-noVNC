@@ -1,4 +1,6 @@
 <?php
+ include 'settings.php';
+
 function getArrCount ($arr, $depth=1) { 
       if (!is_array($arr) || !$depth) return 0; 
          
@@ -19,8 +21,9 @@ function xml2array ( $xmlObject, $out = array () )
         return $out;
 }
 
-function do_call($request,$debug=0,$host='localhost',$port=2633) {
-    
+function do_call($request,$debug=0,$host='', $port='') {
+    $host=($host=='')? cnf('nebula_host'):$host;
+    $port=($port=='')? cnf('nebula_port'):$port;
     $fp = fsockopen($host, $port, $errno, $errstr);
     $query = "POST /RPC2 HTTP/1.0\nUser_Agent: My Egg Client\nHost: ".$host."\nContent-Type: text/xml\nContent-Length: ".strlen($request)."\n\n".$request."\n";
     if (!fputs($fp, $query, strlen($query))) {

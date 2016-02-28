@@ -1,7 +1,7 @@
 <?php
 require_once('authenticate.php');
 include ("rpcxml.php");
-
+include_once 'settings.php';
 $auth=$_SESSION['oneauth'];
 $id=$_REQUEST['id'];
 $id=($id>0)?$id:0;
@@ -55,7 +55,10 @@ $token=$t[0];
 #<p>
 #<iframe height=300 width=300 src='vnc_auto.html?token=$token&port=443&title=$name&resize=downscale'>
 #</iframe>
-$URL="vnc_auto.html?token=$token&port=443&title=$name&resize=downscale";
+$host= cnf('novnc_host');
+$port= cnf('novnc_port');
+$host=($host=='')?'':'host='.$host;
+$URL="vnc_auto.html?token=$token&".$host."&port=".$port."&title=$name&resize=downscale";
 print <<< EOF
 <div align=center class=showhide style="background:lightgrey;float:right;color:white;width:20px">
 <a href='#' onclick="return false;">X</a>
