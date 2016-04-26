@@ -1,0 +1,15 @@
+<div id="tabs">
+    <ul>
+<?php for($i=0;$i<$param['vm']['count'];$i++}{ ?>
+print '        <li>
+	<a href="#'.$i.'">'.$param['vm'][$i]['name'].'</a>
+        </li>';
+<?php } ?>
+    </ul>
+<?php for($i=0;$i<$vm_count;$i++}{ ?>
+print '<div id=".'$i,'">';
+include 'template_vmn.html';
+print '</div>';
+<?php } ?>
+
+</div>

@@ -1,0 +1,169 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf8" /> 
+<title>OSU Opennebula Cloud</title> 
+<style type="text/css"> 
+html {
+	overflow-Y: scroll;
+}
+body {
+	font: 10px normal Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
+	line-height: 1.7em;
+}
+*, * focus {
+	outline: none;
+	margin: 0;
+	padding: 0;
+}
+ 
+.container {
+	width: 600px%;
+	margin: 0 auto;
+	float:left;
+}
+h1 {
+	font: 4em normal Georgia, 'Times New Roman', Times, serif;
+	text-align:center;
+	padding: 20px 0;
+	color: #aaa;
+}
+h1 span { color: #666; }
+h1 small{
+	font: 0.3em normal Verdana, Arial, Helvetica, sans-serif;
+	text-transform:uppercase;
+	letter-spacing: 0.5em;
+	display: block;
+	color: #666;
+}
+ 
+h2.acc_trigger {
+	padding: 0;	margin: 0 0 5px 0;
+	background: url(img/h2_trigger_a.gif) no-repeat;
+	height: 46px;	line-height: 46px;
+	width: 60%;
+	font-size: 2em;
+	font-weight: normal;
+	float: left;
+}
+h2.acc_trigger a {
+	color: #fff;
+	text-decoration: none;
+	display: block;
+	padding: 0 0 0 50px;
+}
+h2.acc_trigger a:hover {
+	color: #ccc;
+}
+h2.active {background-position: left bottom;}
+.acc_container {
+	margin: 0 0 5px; padding: 0;
+	overflow: hidden;
+	font-size: 1.2em;
+	width: 99%;
+	clear: both;
+	background: #f0f0f0;
+	border: 1px solid #d6d6d6;
+	-webkit-border-bottom-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px; 
+}
+.acc_container .block {
+	padding: 5px;
+}
+.acc_container .block p {
+	padding: 5px 0;
+	margin: 5px 0;
+}
+.acc_container h3 {
+	font: 2.5em normal Georgia, "Times New Roman", Times, serif;
+	margin: 0 0 10px;
+	padding: 0 0 5px 0;
+	border-bottom: 1px dashed #ccc;
+}
+.acc_container img {
+	float: left;
+	margin: 10px 15px 15px 0;
+	padding: 5px;
+	background: #ddd;
+	border: 1px solid #ccc;
+}
+</style> 
+
+<script type="text/javascript" src="js/jquery-latest.js"></script> 
+<script src="js/jquery-ui.js"></script>
+
+<script type="text/javascript"> 
+function LoadUrl(obj,url){
+$(obj).load(url);
+}
+$(document).ready(function(){
+	
+//Set default open/close settings
+$('.acc_container').hide(); //Hide/close all containers
+//$('.acc_trigger:first').addClass('active').next().show(); //Add "active" class to first trigger, then show/open the immediate next container
+ 
+
+//On Click
+$('.acc_trigger').click(function(){
+	if ($(this).attr('id')=='vms_h2'){
+//	    alert(1);
+    		var loc = window.location.pathname;
+		var dir = loc.substring(0, loc.lastIndexOf('/'));
+	      $('div.#vms').load(dir+'/getvmstab.php');
+	}
+	if( $(this).next().is(':hidden') ) { //If immediate next container is closed...
+		$('.acc_trigger').removeClass('active').next().slideUp(); //Remove all .acc_trigger classes and slide up the immediate next container
+		$(this).toggleClass('active').next().slideDown(); //Add .acc_trigger class to clicked trigger and slide down the immediate next container
+	}
+	return false; //Prevent the browser jump to the link anchor
+});
+ 
+});
+
+</script> 
+</head> 
+ 
+<body> 
+ 
+<h1>Облако ОГУ на базе <span>Opennebula</span><small>Кафеда ГКН и ЦИТ | <a href="http://cit.osu.ru/">Справка</a></small></h1> 
+ 
+<a href='logout.php'>Выход</a>
+<div class="container"> 
+ 
+	<h2 id=vms_h2 class="acc_trigger"><a href="#">Виртуальные машины</a></h2> 
+	<div class="acc_container" > 
+		<div id=vms data-url='getvmstab.php' class="block"> 
+		</div> 
+	</div> 
+	
+	<h2 class="acc_trigger"><a href='#'>Настройки пользователя</a></h2> 
+	<div class="acc_container"> 
+		<div class="block"> 
+		</div> 
+	</div> 
+	
+	<h2 class="acc_trigger"><a href="#">Справка по работе с системой</a></h2> 
+	<div class="acc_container"> 
+		<div class="block"> 
+
+		</div> 
+	</div> 
+	
+	<h2 class="acc_trigger"><a href="#">Обратная связь и поддержка</a></h2> 
+	<div class="acc_container"> 
+		<div class="block"> 
+
+		</div> 
+	</div> 
+	
+</div> 
+	
+</body> 
+</html> 
