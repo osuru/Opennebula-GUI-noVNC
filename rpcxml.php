@@ -19,7 +19,7 @@ function xml2array ( $xmlObject, $out = array () )
         return $out;
 }
 
-function do_call($request,$host='localhost',$port=2633) {
+function do_call($request,$debug=0,$host='localhost',$port=2633) {
     
     $fp = fsockopen($host, $port, $errno, $errstr);
     $query = "POST /RPC2 HTTP/1.0\nUser_Agent: My Egg Client\nHost: ".$host."\nContent-Type: text/xml\nContent-Length: ".strlen($request)."\n\n".$request."\n";
@@ -76,7 +76,7 @@ xml_parser_free($p);
 //print $body;
 #print "<pre>";
 #print_r ($data[11]['value']);
-//print $contents;
+if ($debug)print $contents;
 #print '123';
 try{
 $d=new SimpleXMLElement($data[11]['value']);
@@ -95,4 +95,21 @@ return 0;
 
 }
 
+function ToXml($array, $rootElement = null, $xml = null) {
+  $_xml = $xml;
+ 
+  if ($_xml === null) {
+    $_xml = new SimpleXMLElement($rootElement !== null ? $rootElement : '<root/>');
+  }
+ 
+  foreach ($array as $k => $v) {
+    if (is_array($v)) { //nested array
+      ToXml($v, $k, $_xml->addChild($k));
+    } else {
+      $_xml->addChild($k, $v);
+    }
+  }
+ 
+  return $_xml->asXML();
+}
 ?>

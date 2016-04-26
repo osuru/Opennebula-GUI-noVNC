@@ -14,6 +14,7 @@ include('rpcxml.php');
 $(function() {
     $( "#tabs" ).tabs({
 //     heightStyle: "fill",
+    collapsible: true,  active: false,
       beforeLoad: function( event, ui ) {
         ui.jqXHR.fail(function() {
           ui.panel.html(
@@ -25,7 +26,7 @@ $( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
 $( "#tabs a" ).click(function(event){
   event.preventDefault();
 //console.log($( this ).attr('id'));
-$.cookies.set('vmtab', 1);
+//$.cookies.set('vmtab', 1);
 return false;
 });
   });
@@ -41,9 +42,12 @@ $( "#tabs" ).css({
             width: $(window).width(),
 //            height: $(window).height()
         });
+
 //alert(full);
 //if (change==0){
 resize_frame(1);
+$('html, body').animate({scrollTop:$(document).height()}, 'slow');
+
 }//if
 if ( (( cur!='absolute') && (change==0)) ||
  ((cur=='absolute') && (change==1)) ){
@@ -70,11 +74,13 @@ print '<div id="tabs">
 <div align=center><h4><a href="#" onclick="make_fullscreen();return false;">
   Сделать ПОБОЛЬШЕ<a/></h4></div>
    <ul>';
+print "<li><a onclick='return false;' href='vminfo.php'>Info</a>";
 
 for($i=0;$i<$param['vm']['count'];$i++){ 
 print "        <li>
 	<a  onclick='return false;' href='getvmtab.php?id=".$param['vm'][$i]['ID']."#vm'>".$param['vm'][$i]['ID'].' - '.$param['vm'][$i]['NAME'].'</a></li>';
  } 
+print "<li><a onclick='return false;' href='newvm.php'>NEW VM</a>";
 print "</ul>";
 ?>
 

@@ -57,6 +57,10 @@ $token=$t[0];
 #</iframe>
 $URL="vnc_auto.html?token=$token&port=443&title=$name&resize=downscale";
 print <<< EOF
+<div align=center class=showhide style="background:lightgrey;float:right;color:white;width:20px">
+<a href='#' onclick="return false;">X</a>
+</div>
+<div class=menu style="border:1px solid lightgrey;">
 <a name="vm"></a> 
 <form>
 <div>
@@ -72,26 +76,53 @@ ________________
 </form>
 <br>
 <h4><A href="$URL" target=_blank>Open in NEW window</a></h4>
+</div>
 <iframe id="frame-$id"  src='$URL'>
 </iframe>
 
+<div id="dialog-confirm" title="" style="display:none;">
+  <p ><span  class="ui-icon ui-icon-alert" 
+    style="float:left; margin:0 7px 20px 0;"></span><p id="dialog-confirm-span"></p></p>
+</div>
+<!--
+<script type="text/javascript" src="js/jquery-latest.js"></script>.
+<script type="text/javascript" src="js/jquery-ui.js"></script>.
+-->
+
 <script>
+
 $('.vmbutton').each(function(i,val){
 $(val).attr('alt',val.value);
 $(val).click(function(){
-  $.get("actvm.php",{id:$id, act: this.value},
-  function(data){
-//     alert(data);
-   });
+var vala=this.value;
+//alert(1);
+var text="Вы уверены, что хотите  сделать <p><p><h3> <b>"+vala+"</b> ?";
+$('#dialog-confirm-span').html(text);
+$("#dialog-confirm").dialog({
+title: "Warning!!!",    //тайтл, заголовок окна
+width:250,              //ширина
+height: 150,            //высота
+modal: true,            //true -  окно модальное, false - нет
+buttons: {
+"ДА! Делаем! ": function() {  
+      $.get("actvm.php",{id:$id, act: vala},
+	  function(data){
+//	     alert(data);
+	       });
+$(this).dialog("close");
+},
+"Закрыть": function() { $(this).dialog("close"); }
+}
+});
   return false;
-})
+}) //click
 })
 
 function resize_frame(fullscreen=0){
-full=0;left=70;
+full=0;left=90;
 if (($('#tabs').css('position')=='absolute')){full=1;left=40};
 
-var width = $(window).width()-$('.ui-tabs-nav:first').width()-left; 
+var width = $(window).width()-$('.ui-tabs-nav:visible').width()-left; 
 var height = width*3/4+40
 
 //alert('full'+full);
@@ -103,6 +134,20 @@ if (fullscreen==0 && full==1) {make_fullscreen(0)}
 }
 resize_frame();
 $(window).resize(resize_frame);
+$('.showhide').click(function(){
+if ($('.menu').is(':visible')){
+$('.menu').hide();
+$(this).html('<a href="#" onclick="return false;">O</a>');
+}else{
+$('.menu').show(); 
+$(this).html('<a href="#" onclick="return false;">X</a>');
+}
+});
+if($('#tabs').css('position')=='absolute'){
+    $('.showhide').trigger('click');
+    $('.menu').hide();
+    }
+
 </script>
 
 EOF

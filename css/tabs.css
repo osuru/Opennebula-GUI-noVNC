@@ -3,5 +3,14 @@
   .ui-tabs-vertical .ui-tabs-nav li { clear: left; width: 100%; border-bottom-width: 1px !important; border-right-width: 0 !important; margin: 0 -1px .2em 0; }
   .ui-tabs-vertical .ui-tabs-nav li a { display:block; }
   .ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active { padding-bottom: 1; padding-right: -3em; border-right-width: 2px; }
-  .ui-tabs-vertical .ui-tabs-panel { padding: 1em; float: left; width: 70%; position:relative;  border:1px solid red;}
+  .ui-tabs-vertical .ui-tabs-panel { padding: 1em; float: left; width: 65%; position:relative;  border:1px solid red;}
   .vmbutton {width:30px; height:30px;}
+  .selectable .ui-selecting { background: #FECA40; }
+  .selectable .ui-selected { background: #F39814; color: white; }
+  .selectable { list-style-type: none; margin: 0; padding: 0; width: 20em; }
+  .selectable li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
+
+  .selectable2 { list-style-type: none; margin: 0; padding: 0; width: 20em; }
+  .selectable2 li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
+  .selectable2 .ui-selecting { background: #FECA40; }
+  .selectable2 .ui-selected { background: green; color: white; }

@@ -55,8 +55,8 @@
                     <td width="1%"><div id="noVNC_buttons">
                         <input type=button value="Send CtrlAltDel"
                             id="sendCtrlAltDelButton">
-                        <input type=button value="FullScreen"
-                            id="fullscreen">
+                        <input type=button value="Refresh"
+                            id="" onclick="location.reload()">
                         <span id="noVNC_xvp_buttons">
                         <input type=button value="Shutdown"
                             id="xvpShutdownButton">
@@ -270,9 +270,9 @@
             }
 
             rfb.connect(host, port, password, path);
-	    document.getElementById('fullscreen').onclick=function(){
-	    document.getElementById("noVNC_canvas").requestFullscreen();
-		};
+//	    document.getElementById('fullscreen').onclick=function(){
+//	    document.getElementById("noVNC_canvas").requestFullscreen();
+//		};
 // 	 console.log(display);
         };
 var isreloaded=0;

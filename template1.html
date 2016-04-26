@@ -2,6 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml"> 
 <head> 
+<link rel="stylesheet" href="css/jquery-ui.css">
 <meta http-equiv="Content-Type" content="text/html; charset=utf8" /> 
 <title>OSU Opennebula Cloud</title> 
 <style type="text/css"> 
@@ -63,7 +64,7 @@ h2.active {background-position: left bottom;}
 	margin: 0 0 5px; padding: 0;
 	overflow: hidden;
 	font-size: 1.2em;
-	width: 99%;
+/*	width: 99%; */
 	clear: both;
 	background: #f0f0f0;
 	border: 1px solid #d6d6d6;
@@ -103,6 +104,7 @@ h2.active {background-position: left bottom;}
 function LoadUrl(obj,url){
 $(obj).load(url);
 }
+
 $(document).ready(function(){
 	
 //Set default open/close settings
@@ -116,7 +118,7 @@ $('.acc_trigger').click(function(){
 //	    alert(1);
     		var loc = window.location.pathname;
 		var dir = loc.substring(0, loc.lastIndexOf('/'));
-	      $('div.#vms').load(dir+'/getvmstab.php');
+	      $('#vms').load(dir+'/getvmstab.php');
 	}
 	if( $(this).next().is(':hidden') ) { //If immediate next container is closed...
 		$('.acc_trigger').removeClass('active').next().slideUp(); //Remove all .acc_trigger classes and slide up the immediate next container

@@ -36,11 +36,11 @@ $r = do_call($request);
 <html lang="en">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-	<title>Creating a simple to-do application - Part 1</title>
+	<title>Opennebula-Login</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<div id="page">
+<div align=center id="page" style="border:1px solid grey; margin : 0 auto; width:300px; height:200px;">
 	<!-- [banner] -->
 	<header id="banner">
 		<hgroup>
