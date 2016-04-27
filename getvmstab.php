@@ -42,11 +42,12 @@ $( "#tabs" ).css({
             width: $(window).width(),
 //            height: $(window).height()
         });
+$( ".ui-tabs-nav" ).css({width:'8em'});
 
 //alert(full);
 //if (change==0){
 resize_frame(1);
-$('html, body').animate({scrollTop:$(document).height()}, 'slow');
+$('html, body').animate({scrollTop:70}, 'slow');
 
 }//if
 if ( (( cur!='absolute') && (change==0)) ||

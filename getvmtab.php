@@ -58,7 +58,7 @@ $token=$t[0];
 $host= cnf('novnc_host');
 $port= cnf('novnc_port');
 $host=($host=='')?'':'host='.$host;
-$URL="vnc_auto.html?token=$token&".$host."&port=".$port."&title=$name&resize=downscale";
+$URL="vnc_auto.html?token=$token&".$host."&port=".$port."&title=$name";
 print <<< EOF
 <div align=center class=showhide style="background:lightgrey;float:right;color:white;width:20px">
 <a href='#' onclick="return false;">X</a>
@@ -80,7 +80,7 @@ ________________
 <br>
 <h4><A href="$URL" target=_blank>Open in NEW window</a></h4>
 </div>
-<iframe id="frame-$id"  src='$URL'>
+<iframe id="frame-$id"  src='$URL&resize=downscale' onload="this.contentWindow.focus()">
 </iframe>
 
 <div id="dialog-confirm" title="" style="display:none;">
