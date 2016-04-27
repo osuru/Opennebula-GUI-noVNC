@@ -37,9 +37,10 @@ $fn=$dir.'one-'.$id;
 $token='';
 $host=$_SERVER['HTTP_HOST'];
 
-if (!file_exists($fn)){
+if(!file_exists($fn)){
 #file("http://$host/vm/$id/startvnc");
 $token=substr(md5(time()),0,20);
+if ($state==3)
 file_put_contents($fn,"$token: $vnc_host:$vnc_port");
 chmod($fn,0666);
 }
